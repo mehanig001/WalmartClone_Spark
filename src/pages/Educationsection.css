@@ -1,0 +1,100 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0071DC;
+  padding: 10px 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.bar img {
+  height: 60px;
+}
+
+.bar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bar ul li {
+  margin: 0 15px;
+}
+
+.bar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.bar ul li a:hover {
+  text-decoration: underline;
+}
+
+.midse, .leftse, .complete {
+  padding: 40px 10%;
+  font-family: 'Roboto', sans-serif;
+  color: #2e2e2e;
+  background-color: #f5f5f5;
+}
+
+.midse h1,
+.leftse h1,
+.FaqEdu h1 {
+  font-size: 28px;
+  color: #1db954;
+  margin-bottom: 10px;
+}
+
+.midse p,
+.leftse p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.FaqEdu {
+  margin-top: 40px;
+}
+
+.FaqItem {
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.FaqQuestion {
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.FaqAnswer {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+}
+
+.AccordionIcon {
+  font-size: 24px;
+  color: #0071DC;
+}
+
+.Certificate, .smallcer, .largecer, .shopprod, .ecofriendimg {
+  margin: 30px 0;
+}
+
+.ecofriendimg img {
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.ecofriendimg img:hover {
+  transform: scale(1.02);
+}
