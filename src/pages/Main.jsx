@@ -10,29 +10,290 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import EcoProductCard from "../components/EcoProductCard";
+import RecyclePurchaseCard from "../components/RecyclePurchaseCard";
 import Heading1 from "./Heading1";
 
 export const Main = () => {
-  const [isLoading,setLoading]=useState(true)
-  useEffect(()=>{
-    setTimeout(()=>{
-         setLoading((prev)=>!prev)
-    },2000)
-  },[])
+  const [isLoading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [userPurchases, setUserPurchases] = useState([]);
+  const location = useLocation();
 
-if(isLoading){
-  return <Box padding='6' boxShadow='lg' bg='white'>
-  <SkeletonCircle size='10' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-</Box>
-}
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    // Fetch all products and user purchases here (replace with real API calls)
+    // Example static data for demo:
+    setProducts([
+      {
+        id: 1,
+        name: "Beco Bamboo Kitchen Towels, 20 sheets",
+        image: "/images/tissue_eco.jpg",
+        price: 6.35,
+        rating: 5,
+        numReviews: 120,
+        shortDescription:
+          "Reusable upto 2000 times, 100% Natural and Ecofriendly Alternative to Tissue Papers",
+        ecoFriendly: true,
+        carbonEmission: 65,
+        ecoBadgeLevel: "4-Leaf",
+        ecoCertificationStatement: "Certified eco-friendly and sustainable.",
+        plasticReduced: 73,
+        chemicalUsed: 21,
+        recyclable: true,
+        certificates: ["Fairtrade", "Organic", "Vegan Seal"],
+        isBestseller: true,
+        returnForRecycle: true,
+        purchasedByUser: true,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge5.png",
+      },
+      {
+        id: 2,
+        name: "Jutify Eco-Friendly Printed Unisex Canvas Shopping Bag, Women's Tote Bag | Spacious, Stylish, Sturdy Handbag",
+        image: "/images/bag_eco.jpg",
+        price: 15.35,
+        rating: 4,
+        numReviews: 98,
+        shortDescription: "Women's Tote Bag | Spacious, Stylish, Sturdy Handbag",
+        ecoFriendly: true,
+        carbonEmission: 60,
+        ecoBadgeLevel: "4-Leaf",
+        ecoCertificationStatement: "Eco-friendly canvas, reusable and sustainable.",
+        plasticReduced: 68,
+        chemicalUsed: 18,
+        recyclable: true,
+        certificates: ["Organic", "Vegan Seal"],
+        isBestseller: true,
+        returnForRecycle: false,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge4.png",
+      },
+      {
+        id: 3,
+        name: "Qudrat Natural Straw | Coconut Leaf | Biodegradable, Eco-Friendly & Sustainable Drinking Straws (Pack of 100)",
+        image: "/images/straw_eco.jpg",
+        price: 8.99,
+        rating: 4,
+        numReviews: 67,
+        shortDescription: "Biodegradable, Eco-Friendly & Sustainable Drinking Straws",
+        ecoFriendly: true,
+        carbonEmission: 75,
+        ecoBadgeLevel: "5-Leaf",
+        ecoCertificationStatement: "100% biodegradable and compostable.",
+        plasticReduced: 90,
+        chemicalUsed: 10,
+        recyclable: true,
+        certificates: ["Compostable", "EcoCert"],
+        isBestseller: true,
+        returnForRecycle: true,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge5.png",
+      },
+      {
+        id: 4,
+        name: "Sow and Grow Plantable Pencils (Pack Of 10 Single Pencils) Made With 100% Recycled Paper|Eco Friendly|Return Gift|Corporate Gifting|Green",
+        image: "/images/pencils_eco.jpg",
+        price: 14.0,
+        rating: 4,
+        numReviews: 54,
+        shortDescription: "Made with 100% recycled paper, plantable pencils.",
+        ecoFriendly: true,
+        carbonEmission: 80,
+        ecoBadgeLevel: "3-Leaf",
+        ecoCertificationStatement: "Plantable and made from recycled materials.",
+        plasticReduced: 95,
+        chemicalUsed: 5,
+        recyclable: true,
+        certificates: ["Recycled", "EcoCert"],
+        isBestseller: true,
+        returnForRecycle: false,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge3.png",
+      },
+      {
+        id: 5,
+        name: "Wooden Eyewear Holder | Made With Sheesham Wood | Eyewear Showcase | 6-Inch Height | Decoration | Gift Material",
+        image: "/images/sunglasses_eco.jpg",
+        price: 37.99,
+        rating: 3,
+        numReviews: 32,
+        shortDescription: "Handcrafted from Sheesham wood, eco-friendly gift.",
+        ecoFriendly: true,
+        carbonEmission: 50,
+        ecoBadgeLevel: "2-Leaf",
+        ecoCertificationStatement: "Handmade, sustainable wood.",
+        plasticReduced: 60,
+        chemicalUsed: 15,
+        recyclable: true,
+        certificates: ["Handmade", "Sustainable Wood"],
+        isBestseller: true,
+        returnForRecycle: false,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge2.png",
+      },
+      {
+        id: 6,
+        name: "Terracotta Clay Water Bottle | Capacity of 1 Litres | Purely Biodegradable | Plastic Alternative",
+        image: "/images/bottle_eco.jpg",
+        price: 25.78,
+        rating: 5,
+        numReviews: 41,
+        shortDescription: "Biodegradable, natural clay water bottle.",
+        ecoFriendly: true,
+        carbonEmission: 65,
+        ecoBadgeLevel: "4-Leaf",
+        ecoCertificationStatement: "Plastic alternative, biodegradable.",
+        plasticReduced: 85,
+        chemicalUsed: 12,
+        recyclable: true,
+        certificates: ["Biodegradable", "EcoCert"],
+        isBestseller: true,
+        returnForRecycle: true,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge4.png",
+      },
+      {
+        id: 7,
+        name: "Bamboo Hot Dish Mats / Table Coasters | 30cm x 30cm | Bamboo Product | Strong and Durable",
+        image: "/images/mats_eco.jpg",
+        price: 21.0,
+        rating: 4,
+        numReviews: 29,
+        shortDescription: "Strong and durable bamboo mats/coasters.",
+        ecoFriendly: true,
+        carbonEmission: 70,
+        ecoBadgeLevel: "3-Leaf",
+        ecoCertificationStatement: "Bamboo, strong and reusable.",
+        plasticReduced: 80,
+        chemicalUsed: 10,
+        recyclable: true,
+        certificates: ["Bamboo", "Reusable"],
+        isBestseller: true,
+        returnForRecycle: false,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge3.png",
+      },
+      {
+        id: 8,
+        name: "Hand Made Jute Hanging Chair | Durable Jute Product | Stylish | Comfortable | Elegant Design",
+        image: "/images/hangingchair_eco.png",
+        price: 599.99,
+        rating: 4,
+        numReviews: 12,
+        shortDescription: "Handmade, durable, stylish jute hanging chair.",
+        ecoFriendly: true,
+        carbonEmission: 50,
+        ecoBadgeLevel: "1-Leaf",
+        ecoCertificationStatement: "Handmade from natural jute.",
+        plasticReduced: 70,
+        chemicalUsed: 20,
+        recyclable: true,
+        certificates: ["Handmade", "Natural Jute"],
+        isBestseller: true,
+        returnForRecycle: false,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge1.png",
+      },
+      {
+        id: 9,
+        name: "HomeStorie Eco-Friendly Foldable Bamboo Laundry Basket Hamper with Lid, Large - 57 Liter (Light Brown)",
+        image: "/images/bamboolaundry.jpg",
+        price: 20.99,
+        rating: 4,
+        numReviews: 22,
+        shortDescription: "Foldable, eco-friendly bamboo laundry basket.",
+        ecoFriendly: true,
+        carbonEmission: 85,
+        ecoBadgeLevel: "5-Leaf",
+        ecoCertificationStatement: "Eco-friendly, foldable, bamboo.",
+        plasticReduced: 90,
+        chemicalUsed: 8,
+        recyclable: true,
+        certificates: ["Bamboo", "EcoCert"],
+        isBestseller: true,
+        returnForRecycle: true,
+        purchasedByUser: false,
+        co2BadgeImg: "/images/co2badge.png",
+        badgeImg: "/images/badge5.png",
+      },
+    ]);
+    setUserPurchases([
+      {
+        id: 2,
+        name: "Eco Bottle",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        shortDescription: "Reusable, BPA-free, 100% recyclable",
+        returnForRecycle: true,
+        purchasedByUser: true,
+      },
+      // ...add more purchases as needed
+    ]);
+  }, []);
 
+  // Check if Greenovation Zone is active (by route)
+  const isGreenovation = location.pathname === "/green";
+
+  if (isLoading) {
+    return (
+      <Box padding="6" boxShadow="lg" bg="white">
+        <SkeletonCircle size="10" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+      </Box>
+    );
+  }
+
+  if (isGreenovation) {
+    // Eco-Friendly Products
+    const ecoProducts = products.filter((p) => p.ecoFriendly);
+    // Recyclable Purchases
+    const recycleProducts = userPurchases.filter(
+      (p) => p.returnForRecycle && p.purchasedByUser
+    );
+    return (
+      <Box w="100%" p={5}>
+        <Heading size="lg" mb={4}>
+          Eco-Friendly Products
+        </Heading>
+        <Flex wrap="wrap" gap={6} mb={10}>
+          {ecoProducts.map((product) => (
+            <EcoProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={() => {}}
+            />
+          ))}
+        </Flex>
+        <Heading size="md" mb={3}>
+          Recycle Your Previous Purchase
+        </Heading>
+        <Flex wrap="wrap" gap={4}>
+          {recycleProducts.map((product) => (
+            <RecyclePurchaseCard
+              key={product.id}
+              product={product}
+              onRecycle={() => {}}
+            />
+          ))}
+        </Flex>
+      </Box>
+    );
+  }
 
   return (
     <Flex w="100%" justifyContent={"space-evenly"} mt={5}>
@@ -230,7 +491,10 @@ if(isLoading){
               </Box>
             </Box>
             <Box w={"30%"} bg="white" color="#0170DA" borderLeftRadius={50}>
-              <Image src="https://github.com/B2Kumar03/homepageImage/blob/main/walmartlogo.png?raw=true" />
+              <Image
+                src="https://github.com/B2Kumar03/homepageImage/blob/main/walmartlogo.png?raw=true"
+                alt="walmart logo"
+              />
             </Box>
           </Flex>
         </Box>
@@ -274,7 +538,13 @@ if(isLoading){
           </Flex>
         </Box>
         <Box height="350px" bg="#A5CBEE" mt={8} borderRadius={8}>
-          <Image src="https://github.com/B2Kumar03/homepageImage/blob/main/wholeContent.png?raw=true" alt="image" h={"100%"} borderRadius={8} cursor={"pointer"}/>
+          <Image
+            src="https://github.com/B2Kumar03/homepageImage/blob/main/wholeContent.png?raw=true"
+            alt="image"
+            h={"100%"}
+            borderRadius={8}
+            cursor={"pointer"}
+          />
         </Box>
       </Box>
     </Flex>

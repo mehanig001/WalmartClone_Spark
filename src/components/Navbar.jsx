@@ -37,6 +37,7 @@ import Searchmenu from "./Searchmenu";
 import SideNavbar from "./SideNavbar";
 import { IoMdLogIn } from "react-icons/io";
 // import Login from "./Login";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const { name } = useContext(AuthContext);
@@ -49,19 +50,19 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState();
   const { count, totalPrice } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const  modal = useDisclosure();
-  const [drawerstate,setDrawerSate]=useState(false)
-  const {signOut}=useContext(AuthContext)
-
+  const modal = useDisclosure();
+  const [drawerstate, setDrawerSate] = useState(false);
+  const { signOut } = useContext(AuthContext);
+  const location = useLocation();
 
   return (
-    <HStack>
+    <HStack w="100%" minH="80px" bg={location.pathname === '/green' ? '#1db954' : '#0071DC'} transition="background 0.3s">
       {/* <Login isOpen1={modal.isOpen} onClose1={modal.onClose} /> */}
       <Flex
         justifyContent="space-between"
         w="100%"
         p={2}
-        bg="#0071DC"
+        bg="transparent"
         color="white"
         alignItems="center"
       >
@@ -80,8 +81,22 @@ const Navbar = () => {
             alignItems={"center"}
             justifyContent={"space-evenly"}
           >
-            {drawerstate?<RxHamburgerMenu onClick={()=>{setDrawerSate((prev)=>!prev);onOpen()}} />:<RxHamburgerMenu onClick={()=>{setDrawerSate((prev)=>!prev);onClose()}} />}
-            <SideNavbar isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+            {drawerstate ? (
+              <RxHamburgerMenu
+                onClick={() => {
+                  setDrawerSate((prev) => !prev);
+                  onOpen();
+                }}
+              />
+            ) : (
+              <RxHamburgerMenu
+                onClick={() => {
+                  setDrawerSate((prev) => !prev);
+                  onClose();
+                }}
+              />
+            )}
+            <SideNavbar isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
             <Image
               src="https://i5.walmartimages.com/dfw/4ff9c6c9-d10e/k2-_ef2c8660-96ed-4f64-891d-329fa488c482.v1.png"
               w="30%"
@@ -129,37 +144,37 @@ const Navbar = () => {
               <IoGridOutline />
             </Box>
             <Box ml={2}>
-            <Menu>
-  <MenuButton
-    px={4}
-    py={2}
-    transition='all 0.2s'
-    // borderRadius='md'
-    // borderWidth='1px'
-    // _hover={{ bg: 'gray.400' }}
-    // _expanded={{ bg: 'blue.400' }}
-    // _focus={{ boxShadow: 'outline' }}
-  >
-    Departments
-  </MenuButton>
-  <MenuList color={"black"}>
-    <MenuItem>All Departments</MenuItem>
-    <MenuDivider />
-    <MenuItem>Deals</MenuItem>
-    <MenuItem>Grocery</MenuItem>
-    <MenuItem>Easter</MenuItem>
-    <MenuItem>Spring Shop</MenuItem>
-    <MenuItem>Home,Garden & Tools</MenuItem>
-    <MenuItem>Clothing,Shoes</MenuItem>
-    <MenuItem>Electronics</MenuItem>
-    <MenuItem>Baby</MenuItem>
-    <MenuItem>Kids</MenuItem>
-    <MenuItem>Toys & Video Games</MenuItem>
-    <MenuItem>Pharamcy,Health & Wellness</MenuItem>
-    <MenuItem>Beauty</MenuItem>
-    <MenuItem>Personal Care</MenuItem>
-  </MenuList>
-</Menu>
+              <Menu>
+                <MenuButton
+                  px={4}
+                  py={2}
+                  transition="all 0.2s"
+                  // borderRadius='md'
+                  // borderWidth='1px'
+                  // _hover={{ bg: 'gray.400' }}
+                  // _expanded={{ bg: 'blue.400' }}
+                  // _focus={{ boxShadow: 'outline' }}
+                >
+                  Departments
+                </MenuButton>
+                <MenuList color={"black"}>
+                  <MenuItem>All Departments</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Deals</MenuItem>
+                  <MenuItem>Grocery</MenuItem>
+                  <MenuItem>Easter</MenuItem>
+                  <MenuItem>Spring Shop</MenuItem>
+                  <MenuItem>Home,Garden & Tools</MenuItem>
+                  <MenuItem>Clothing,Shoes</MenuItem>
+                  <MenuItem>Electronics</MenuItem>
+                  <MenuItem>Baby</MenuItem>
+                  <MenuItem>Kids</MenuItem>
+                  <MenuItem>Toys & Video Games</MenuItem>
+                  <MenuItem>Pharamcy,Health & Wellness</MenuItem>
+                  <MenuItem>Beauty</MenuItem>
+                  <MenuItem>Personal Care</MenuItem>
+                </MenuList>
+              </Menu>
             </Box>
           </Box>
         </Box>
@@ -184,48 +199,52 @@ const Navbar = () => {
               <BsUiRadiosGrid />
             </Box>
             <Box ml={2}>
-            <Menu>
-  <MenuButton
-    px={4}
-    py={2}
-    transition='all 0.2s'
-    // borderRadius='md'
-    // borderWidth='1px'
-    // _hover={{ bg: 'gray.400' }}
-    // _expanded={{ bg: 'blue.400' }}
-    // _focus={{ boxShadow: 'outline' }}
-  >
-     <Text className="roboto-bold">Services</Text>
-  </MenuButton>
-  <MenuList color={"black"}>
-    <MenuItem> <Text className="roboto-bold">All Services</Text></MenuItem>
-    <MenuDivider />
-    <MenuItem>Auto Care Center Services</MenuItem>
-    <MenuItem>Pharmacy</MenuItem>
-    <MenuItem>Health & Wellness</MenuItem>
-    <MenuItem>Registry,Lists,& Gift</MenuItem>
-    <MenuItem>Custom Cakes</MenuItem>
-    <MenuItem>Photo Services</MenuItem>
-    <MenuItem>Electronics</MenuItem>
-    <MenuItem>Money Services</MenuItem>
-    <MenuItem>Protection,Home & Tech</MenuItem>
-    <MenuItem>Subscription</MenuItem>
-    <MenuItem>Community & Giving</MenuItem>
-    <MenuItem>Ordering online</MenuItem>
-    <MenuItem>Get inspired</MenuItem>
-  </MenuList>
-</Menu>
+              <Menu>
+                <MenuButton
+                  px={4}
+                  py={2}
+                  transition="all 0.2s"
+                  // borderRadius='md'
+                  // borderWidth='1px'
+                  // _hover={{ bg: 'gray.400' }}
+                  // _expanded={{ bg: 'blue.400' }}
+                  // _focus={{ boxShadow: 'outline' }}
+                >
+                  <Text className="roboto-bold">Services</Text>
+                </MenuButton>
+                <MenuList color={"black"}>
+                  <MenuItem>
+                    {" "}
+                    <Text className="roboto-bold">All Services</Text>
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Auto Care Center Services</MenuItem>
+                  <MenuItem>Pharmacy</MenuItem>
+                  <MenuItem>Health & Wellness</MenuItem>
+                  <MenuItem>Registry,Lists,& Gift</MenuItem>
+                  <MenuItem>Custom Cakes</MenuItem>
+                  <MenuItem>Photo Services</MenuItem>
+                  <MenuItem>Electronics</MenuItem>
+                  <MenuItem>Money Services</MenuItem>
+                  <MenuItem>Protection,Home & Tech</MenuItem>
+                  <MenuItem>Subscription</MenuItem>
+                  <MenuItem>Community & Giving</MenuItem>
+                  <MenuItem>Ordering online</MenuItem>
+                  <MenuItem>Get inspired</MenuItem>
+                </MenuList>
+              </Menu>
             </Box>
           </Box>
         </Box>
-        <Box w={{
-  base: "1xl",
-  sm: "100%",
-  md: "100%",
-  lg: "2xl",
-  xl: "2xl",
-  
-}}>
+        <Box
+          w={{
+            base: "1xl",
+            sm: "100%",
+            md: "100%",
+            lg: "xl",
+            xl: "xl",
+          }}
+        >
           <InputGroup size="md" bg="#FFFFFF" borderRadius="20px">
             <Input
               pr="4.5rem"
@@ -254,14 +273,16 @@ const Navbar = () => {
           </InputGroup>
         </Box>
 
-        <Box color="white" display={{
-  base: "none",
-  sm: "none",
-  md: "none",
-  lg: "block",
-  xl: "block",
-  
-}}>
+        <Box
+          color="white"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "block",
+            xl: "block",
+          }}
+        >
           <Box
             display={"flex"}
             alignItems={"center"}
@@ -280,14 +301,16 @@ const Navbar = () => {
             </Box>
           </Box>
         </Box>
-        <Box color="white" display={{
-  base: "none",
-  sm: "none",
-  md: "none",
-  lg: "block",
-  xl: "block",
-  
-}}>
+        <Box
+          color="white"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "block",
+            xl: "block",
+          }}
+        >
           <Box
             display={"flex"}
             alignItems={"center"}
@@ -346,13 +369,15 @@ const Navbar = () => {
 
                 <hr />
                 <Text mt={10} color="black">
-                 <Box
+                  <Box
                     display={"flex"}
                     alignItems={"center"}
                     cursor={"pointer"}
                   >
-                    <BiLogIn/>
-                    <Text ml={2} onClick={()=>navigate("/account/login")}>Login(<u>If you have walmert account.</u>)</Text>
+                    <BiLogIn />
+                    <Text ml={2} onClick={() => navigate("/account/login")}>
+                      Login(<u>If you have walmert account.</u>)
+                    </Text>
                   </Box>
                   <Box
                     display={"flex"}
@@ -381,7 +406,7 @@ const Navbar = () => {
                       alignItems={"center"}
                       cursor={"pointer"}
                       onClick={() => {
-                        signOut()
+                        signOut();
                       }}
                     >
                       <IoIosLogOut />
@@ -394,7 +419,85 @@ const Navbar = () => {
             <Box></Box>
           </Box>
         </Box>
-        <Box color="white" >
+        {/* Greenovation Zone Button (with popover) */}
+        <Box
+          color="white"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "block",
+            xl: "block",
+          }}
+        >
+          <Box display={"flex"} alignItems={"center"} p={3}>
+            <Box className="popover_trigger_nav" position="relative">
+              <a
+                href="/green"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  id="itemToTrack"
+                  bg="#28a745"
+                  color="white"
+                  _hover={{ bg: "#218838" }}
+                >
+                  Greenovation Zone
+                </Button>
+              </a>
+              {/* Popover content, hidden by default, can be shown with CSS/JS as needed */}
+              <Box
+                className="popover_content_nav"
+                position="absolute"
+                top="110%"
+                left="0"
+                bg="white"
+                color="black"
+                p={3}
+                borderRadius="md"
+                boxShadow="md"
+                zIndex={10}
+                display="none"
+              >
+                <Box
+                  className="triangle"
+                  w={0}
+                  h={0}
+                  borderLeft="10px solid transparent"
+                  borderRight="10px solid transparent"
+                  borderBottom="10px solid white"
+                  position="absolute"
+                  top="-10px"
+                  left="20px"
+                />
+                <Text>
+                  Introducing our brand new section
+                  <br />
+                  Greenovation Zone
+                </Text>
+                <Button
+                  className="got_it"
+                  mt={2}
+                  size="sm"
+                  colorScheme="green"
+                >
+                  Got It
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        {/* End Greenovation Zone Button */}
+        <Box
+          color="white"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "block",
+            xl: "block",
+          }}
+        >
           <Box
             display={"flex"}
             alignItems={"center"}

@@ -16,6 +16,7 @@ import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { CiLocationOn } from "react-icons/ci";
 import { IoHomeOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink} from "@chakra-ui/react";
@@ -23,6 +24,7 @@ import { Link as ChakraLink} from "@chakra-ui/react";
 export const Pannel = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [pannelButton, setpannelButton] = useState(false);
+  const location = useLocation();
 
   function handle() {
     setpannelButton((prev) => !prev);
@@ -38,12 +40,12 @@ export const Pannel = () => {
   };
 
   return (
-    <HStack borderTop={"1px solid white"}>
+    <HStack borderTop={"1px solid white"} w="100%" minH="60px" bg={location.pathname === '/green' ? '#1db954' : '#0071DC'} transition="background 0.3s">
       <Flex
         justifyContent="space-between"
         w="100%"
         // p={0.5}
-        bg="#0071DC"
+        bg="transparent"
         color="white"
         alignItems="center"
       >

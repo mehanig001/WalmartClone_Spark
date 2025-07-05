@@ -8,15 +8,18 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 export const Footer = () => {
+  const location = useLocation();
+
   return (
     <>
       <VStack>
         <Box w="100%" mt={100}>
           <Box
             h={150}
-            bg="#E6F1FC"
+            bg={location.pathname === '/green' ? '#b9f5d8' : '#E6F1FC'}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
@@ -36,7 +39,7 @@ export const Footer = () => {
           </Box>
           <Box
             h={150}
-            bg="#004F9A"
+            bg={location.pathname === '/green' ? '#1db954' : '#004F9A'}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
