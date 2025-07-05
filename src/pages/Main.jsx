@@ -270,13 +270,14 @@ export const Main = () => {
         <Heading size="lg" mb={4}>
           Eco-Friendly Products
         </Heading>
-        <Flex wrap="wrap" gap={6} mb={10}>
+        <Flex wrap="wrap" gap={6} mb={10} alignItems="stretch">
           {ecoProducts.map((product) => (
-            <EcoProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={() => {}}
-            />
+            <Box key={product.id} flex="1 1 260px" minW="260px" maxW="320px" display="flex">
+              <EcoProductCard
+                product={product}
+                onAddToCart={() => {}}
+              />
+            </Box>
           ))}
         </Flex>
         <Heading size="md" mb={3}>
