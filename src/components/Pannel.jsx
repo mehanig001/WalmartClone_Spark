@@ -139,7 +139,7 @@ export const Pannel = () => {
           </Box>
         </Box>
         <Spacer />
-        <Box  w="45%" className="roboto-bold" display={{
+        <Box  w="55%" className="roboto-bold" display={{
   base: "block",
   sm: "none",
   md: "none",
@@ -148,35 +148,38 @@ export const Pannel = () => {
   
 }}>
           <Flex justifyContent={"space-evenly"}>
-            <Box>
-              <ChakraLink as={ReactRouterLink} >
-                Deals
-              </ChakraLink>
-            </Box>
-            <Box>
-              <ChakraLink as={ReactRouterLink} >
-                Grocery & Essentials
-              </ChakraLink>
-            </Box>
-            <Box>
-              <ChakraLink as={ReactRouterLink} >
-                Ester
-              </ChakraLink>
-            </Box>
-            <Box >
-              <ChakraLink as={ReactRouterLink} >
-                Walmart Style
-              </ChakraLink>
-              
-            </Box>
-            <Box>
-              <ChakraLink as={ReactRouterLink} >
-                Baby Days
-              </ChakraLink>
-            </Box>
-            
-            
-          </Flex>
+  <Box>
+    <ChakraLink as={ReactRouterLink}>Deals</ChakraLink>
+  </Box>
+  <Box>
+    <ChakraLink as={ReactRouterLink}>Grocery & Essentials</ChakraLink>
+  </Box>
+  <Box>
+    <ChakraLink as={ReactRouterLink}>Ester</ChakraLink>
+  </Box>
+  <Box>
+    <ChakraLink as={ReactRouterLink}>Walmart Style</ChakraLink>
+  </Box>
+  <Box>
+    <ChakraLink as={ReactRouterLink}>Baby Days</ChakraLink>
+  </Box>
+
+  {location.pathname === "/green" && (
+    <>
+      <Box>
+        <ChakraLink as={ReactRouterLink} to="/community">
+          Community Page
+        </ChakraLink>
+      </Box>
+      <Box>
+        <ChakraLink as={ReactRouterLink} to="/sustainability">
+          Sustainability Reports
+        </ChakraLink>
+      </Box>
+    </>
+  )}
+</Flex>
+
         </Box>
 
         <motion.div

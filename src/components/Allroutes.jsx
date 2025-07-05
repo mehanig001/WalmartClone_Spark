@@ -12,6 +12,8 @@ import SearchProduct from "./SearchProduct";
 import { ProductDetails } from "./ProductDetails";
 import Login from "../form/Login";
 import { Main } from "../pages/Main";
+import Community from "../pages/Community";
+import SustainabilityReports from "../pages/SustainabilityReports";
 
 export const Allroutes = () => {
   const { search } = useState("");
@@ -30,6 +32,8 @@ export const Allroutes = () => {
         <Route path={`/product/:id`} element={<SearchProduct />} />
         <Route path={"/product/details"} element={<ProductDetails />} />
         <Route path="/green" element={<Main />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/sustainability" element={<SustainabilityReports />} />
       </Routes>
     </>
   );
